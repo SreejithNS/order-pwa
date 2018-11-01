@@ -1,0 +1,22 @@
+{
+  "short_name": "Orders",
+  "name": "Order - Jithu Appalam",
+  "icons": [
+    {
+      "src": "/img/logo.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/img/logo.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "orientation": "portrait",
+  "start_url": "/index.php",
+  "background_color": "#eee",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#7b1fa2"
+}

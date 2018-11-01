@@ -1,0 +1,58 @@
+body,html {
+	margin:0px;
+	padding: 0px;
+	background: #eee;
+}
+
+.page{
+	background: #fff;
+	position: fixed;
+	left: 0px;
+	top:0px;
+	height: 100%;
+	width: 100%;
+	overflow: scroll;
+}
+
+.rel{
+	position: relative;
+}
+i{
+	-webkit-user-select: none;
+}
+.text-middle{
+	vertical-align: middle;
+}
+.roundpadding{
+	border-radius: 8px;
+	padding: 4px;
+}
+.marginpadding{
+	margin: -10px 10px 0px 10px;padding: 3px 0px 3px 0px;
+}
+.mgb0{
+	margin-bottom: 0px;
+}
+
+.fn1{
+	font-size: 1.3em!important;
+}
+.fn2{
+	font-size: 1.5em!important;
+}
+.btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+    min-height: 20px;
+    max-height: 65px;
+    height: auto;
+}
+button:focus,button:active{
+	outline: none!important;
+}
+
+.alerty.alerty-show{
+	border-radius:13px;
+}
+.click {
+	cursor: pointer;
+}
