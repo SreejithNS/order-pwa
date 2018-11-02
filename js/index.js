@@ -38,6 +38,7 @@ var app = {
 var orders = {
 	templist:[],
 	list:[],
+	ordered:[],
 	remove: (index)=>{
 		orders.templist.splice(index,1);		
 	},
@@ -79,6 +80,53 @@ var orders = {
 			orders.list = [];
 			$("#order-list").children().remove();
 		}
+	},
+	getOrders: ()=>{
+		var data = {
+			do: "myorders",
+			data: app.userid
+		}
+		$.get("cgi/index.php",data,
+			(res)=>{
+				console.log(res);
+				var a = JSON.parse(res);
+				var temp = [];
+				a.forEach((d)=>temp.push(JSON.parse(d)));
+				temp.forEach((d,i)=>{
+					temp[i].odr = JSON.parse(temp[i].odr)
+				});
+				orders.ordered = temp;
+			}
+			);
+	},
+	loadOrdered: ()=>{
+		orders.ordered.forEach((d)=>{
+			var id,sts,time,chips;
+			id = d.id;
+			sts = (d.status == 0)? "Ordered":"Ready";
+			var epoch = new Date(1541170348750);
+			time = epoch.toLocaleString();
+			chips = "";
+			d.odr.forEach((o)=>{
+				let name = o.item +' - '+o.quantity;
+				chips += `<div class='chip'>${name}</div>`;
+			});
+			var data = `<div class="marginpadding">
+					<div class="row z-depth-3 roundpadding">
+					<div class="col s2">
+						<span class="grey-text">ORDER ID #</span><span class="grey-text">${id}</span>
+						<h3>${sts}</h3>
+						<span class="grey-text">${time}</span>
+					</div>
+
+					<div class="col s12 centered">
+						<span class="grey-text">Items</span><br>
+						${chips}
+					</div>
+				</div>
+			</div>`;
+		$('#ordered').append(data);
+		});
 	}
 };
 
@@ -107,6 +155,9 @@ $('.itembut').map((i,dom)=>$(dom).on('click',(e)=>{
 			alerty.alert('You must enter quantity');
 		});
 }));
+
+
+
 app.init();
 
 if ('serviceWorker' in navigator) {

@@ -28,8 +28,8 @@
 		  <a href="#name"><span id="app-username" class="white-text name">Sreejith N</span></a>
 		  <a href="#email"><span id="app-userid" class="white-text number">nssreejith229@gmail.com</span></a>
 		</div></li>
-		<li><a href="#"><i class="material-icons">featured_play_list</i>Orders</a></li>
-		<li><a href="#"><i class="material-icons">add_box</i>Add Items</a></li>
+		<li><a href="#"><i class="material-icons">featured_play_list</i>Your orders</a></li>
+		<li><a href="#"><i class="material-icons">add_box</i>New Order</a></li>
 		<li><div class="divider"></div></li>
 		<li><a class="subheader">Created by Sreejith N</a></li>
 		<li><a class="waves-effect" href="#!">Jithu Appalam Products</a></li>
@@ -41,14 +41,6 @@
 		</div>
 		<div class="container">
 			<div class="section">
-				<!---div class="row">
-					<div class="col s10">
-						<p>To send order click here</p>
-					</div>
-					<div class="col s2 ">
-						<p class="right-align"><i class="small material-icons">add</i></p>
-					</div>
-				</div--->
 			<table class="striped highlight ">
 				<thead>
 					<tr>
@@ -75,11 +67,11 @@
 			</div>
 		</div>
 	</div>
-	<div class="page hide" id="page-yourorders">
+	<div class="page" id="page-yourorders">
 		<div class="section z-depth-3" style="padding: 1rem 0rem 1rem 0.8rem;">
 			<h3 style="margin-bottom: 0px;"><i class="medium material-icons click" style="vertical-align: -8px;margin-right:5px;font-size: 2.5rem">menu</i>Your Orders</h3>
 		</div>
-		<div class="container">
+		<div class="container" id="ordered">
 			<div class="section"></div>
 			<div class="marginpadding">
 				<div class="row z-depth-3 roundpadding">
