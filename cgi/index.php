@@ -51,8 +51,11 @@
     die("DB Connection failed: " . $conn->connect_error);
 	}
 		$data = $_GET['data'];
-
-		$query = "SELECT * FROM `orders` WHERE `userid` = ".intval($data);
+		if(!is_numeric($data)) {
+			echo 'Nice Try but Im secured man!!';
+			return;
+		};
+		$query = "SELECT * FROM `orders` WHERE `userid` = ".$data;
 		$arr = array();
 		if ($result = $conn->query($query)) {
 
