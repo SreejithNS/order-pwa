@@ -7,8 +7,8 @@
 			case 'place':
 			place();
 			break;
-			case 'status':
-			status();
+			case 'myorders':
+			yourorders();
 			break;
 			default:
 			echo 0;
@@ -38,6 +38,31 @@
 		    echo 1;
 		} else {
 		    echo $conn->error;
+		}
+		$conn->close();
+	}
+	function yourorders(){
+			$username = 'root';
+	$password = 'usbw';
+	$host = 'localhost';
+	$dbname = 'id3506608_cgi';
+		$conn = new mysqli($host, $username, $password, $dbname);
+	if ($conn->connect_error) {
+    die("DB Connection failed: " . $conn->connect_error);
+	}
+		$data = $_GET['data'];
+
+		$query = "SELECT * FROM `orders` WHERE `userid` = ".intval($data);
+		$arr = array();
+		if ($result = $conn->query($query)) {
+
+		    while ($row = $result->fetch_assoc()) {
+			    array_push($arr,json_encode($row));
+		    }
+		    echo json_encode($arr);
+			
+		    /* free result set */
+		    $result->free();
 		}
 		$conn->close();
 	}
