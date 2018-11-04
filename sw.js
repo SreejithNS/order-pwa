@@ -1,4 +1,4 @@
-var CACHE_NAME = 'test-11';
+var CACHE_NAME = 'test-run-04-11-2018';
 var urlsToCache = [
 	'/',
 	"/js/materialize.min.js",
@@ -16,7 +16,6 @@ var urlsToCache = [
 
 
 self.addEventListener('install', function(event) {
-  // Perform install steps
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(function(cache) {
