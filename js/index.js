@@ -3,6 +3,7 @@
 var app = {
 	userid: false,
 	username: null,
+	sync: null,
 	getName:()=>{
 		if(localStorage.getItem('username')!==null && localStorage.getItem('username')!==""){
 			app.username = localStorage.getItem('username');
@@ -28,14 +29,36 @@ var app = {
 		app.userid = id;
 		$('#app-username').html(app.username).css('text-transform','capitalize');
 		$('#app-userid').html(app.userid);
-		$('#page-additem').hide();
 		$('#but-additem').on('click',()=>$('#page-additem').fadeIn());
 		$('#but-home').on('click',()=>$('#page-additem').fadeOut());
+		$('.menu').each((i,e)=>{
+			console.log($(e));
+			$(e).on('click',()=>$('.sidenav').sidenav('open'));
+		});
 		$('.sidenav').sidenav();
+		sync = setInterval(()=>{
+			orders.getOrders(true)
+		},5*1000);
+		app.clickPage('yourorders');
+	},
+	clickPage:(id,close)=>{
+		if(!close) $('.sidenav').sidenav('close');
+		var pages = $(".page");
+		pages.each((i,page)=>{
+			var name = $(page).attr('id').split('');
+				name.splice(0,5);
+				name = name.join('');
+			if(name == id){
+				$(page).show();
+			}else{	
+				$(page).hide();
+			}
+		});
 	}
 };
 
 var orders = {
+	raw:[],
 	templist:[],
 	list:[],
 	ordered:[],
@@ -73,6 +96,8 @@ var orders = {
 			if(a==1){
 				M.toast({html: 'Order sent successfully',displayLength:2000});
 			}
+			$('#order-list').children().remove();
+			app.clickPage('yourorders',true);
 		}
 		);
 		}else{
@@ -81,25 +106,33 @@ var orders = {
 			$("#order-list").children().remove();
 		}
 	},
-	getOrders: ()=>{
+	getOrders: (a)=>{
 		var data = {
 			do: "myorders",
 			data: app.userid
 		}
 		$.get("cgi/index.php",data,
 			(res)=>{
-				console.log(res);
-				var a = JSON.parse(res);
-				var temp = [];
-				a.forEach((d)=>temp.push(JSON.parse(d)));
-				temp.forEach((d,i)=>{
-					temp[i].odr = JSON.parse(temp[i].odr)
-				});
-				orders.ordered = temp;
+				if(res !== orders.raw) {
+					orders.raw = res;
+					M.toast({html: 'One of your order is ready',displayLength:2000});
+					var a = JSON.parse(res);
+					var temp = [];
+					a.forEach((d)=>temp.push(JSON.parse(d)));
+					temp.forEach((d,i)=>{
+						temp[i].odr = JSON.parse(temp[i].odr)
+					});
+					orders.ordered = temp;
+				}else{
+					a=false;
+				}
+				if(a) orders.loadOrdered();
 			}
 			);
 	},
 	loadOrdered: ()=>{
+		$('#ordered').children().remove();
+		$('#ordered').prepend('<div class="section"></div>');
 		orders.ordered.forEach((d)=>{
 			var id,sts,time,chips;
 			id = d.id;
@@ -122,10 +155,31 @@ var orders = {
 					<div class="col s12 centered">
 						<span class="grey-text">Items</span><br>
 						${chips}
+						<br><a class="waves-effect waves-teal btn-flat" onclick="orders.delete(${id})"><i class="tiny material-icons" style="vertical-align:-4px">delete_outline</i> Delete</a>
 					</div>
 				</div>
 			</div>`;
 		$('#ordered').append(data);
+		});
+	},
+	delete: (id)=>{
+		var data = {
+			'do':"delete",
+			'data': id
+		};
+		alerty.confirm('Delete your order?', function() {
+		$.get("cgi/index.php",data,
+			(res)=>{
+				console.log(res);
+				if(res == 1) {
+					M.toast({html: 'Your Order deleted!',displayLength:2000});
+					orders.getOrders(true);
+				}else{
+					alerty.alert('Sorry, Please check your internet Connection');
+				}
+			});
+		}, function(){
+		  M.toast({html:'Nothing happened!'});
 		});
 	}
 };
@@ -158,9 +212,11 @@ $('.itembut').map((i,dom)=>$(dom).on('click',(e)=>{
 
 
 
-app.init();
 
-if ('serviceWorker' in navigator) {
+$(document).ready(function(){
+    	app.init();
+});
+/*if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
     navigator.serviceWorker.register('/sw.js').then(function(registration) {
       // Registration was successful
@@ -170,4 +226,4 @@ if ('serviceWorker' in navigator) {
       console.log('ServiceWorker registration failed: ', err);
     });
   });
-}
+}*/

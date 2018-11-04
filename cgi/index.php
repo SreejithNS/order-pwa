@@ -10,6 +10,9 @@
 			case 'myorders':
 			yourorders();
 			break;
+			case 'delete':
+			delete();
+			break;
 			default:
 			echo 0;
 		}
@@ -41,6 +44,25 @@
 		}
 		$conn->close();
 	}
+	function delete(){
+		$username = 'root';
+		$password = 'usbw';
+		$host = 'localhost';
+		$dbname = 'id3506608_cgi';
+		$conn = new mysqli($host, $username, $password, $dbname);
+		if ($conn->connect_error) {
+	    	die("DB Connection failed: " . $conn->connect_error);
+		}
+
+		$id = $_GET['data'];
+		$sql = "DELETE FROM `id3506608_cgi`.`orders` WHERE `orders`.`id` = ".$id;
+		if ($conn->query($sql) === TRUE) {
+		    echo 1;
+		} else {
+		    echo $conn->error;
+		}
+		$conn->close();
+	}
 	function yourorders(){
 			$username = 'root';
 	$password = 'usbw';
@@ -55,7 +77,7 @@
 			echo 'Nice Try but Im secured man!!';
 			return;
 		};
-		$query = "SELECT * FROM `orders` WHERE `userid` = ".$data;
+		$query = "SELECT * FROM `orders` WHERE `userid` = ".$data." ORDER BY `id` DESC";
 		$arr = array();
 		if ($result = $conn->query($query)) {
 

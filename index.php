@@ -28,8 +28,8 @@
 		  <a href="#name"><span id="app-username" class="white-text name">Sreejith N</span></a>
 		  <a href="#email"><span id="app-userid" class="white-text number">nssreejith229@gmail.com</span></a>
 		</div></li>
-		<li><a href="#"><i class="material-icons">featured_play_list</i>Your orders</a></li>
-		<li><a href="#"><i class="material-icons">add_box</i>New Order</a></li>
+		<li><a href="#" onclick="app.clickPage('yourorders')"><i class="material-icons">featured_play_list</i>Your orders</a></li>
+		<li><a href="#"  onclick="app.clickPage('orderlist')"><i class="material-icons">add_box</i>New Order</a></li>
 		<li><div class="divider"></div></li>
 		<li><a class="subheader">Created by Sreejith N</a></li>
 		<li><a class="waves-effect" href="#!">Jithu Appalam Products</a></li>
@@ -37,7 +37,7 @@
 	
 	<div class="page" id="page-orderlist">
 		<div class="section z-depth-3" style="padding: 1rem 0rem 1rem 0.8rem;">
-			<h3 style="margin-bottom: 0px;"><i class="medium material-icons click" style="vertical-align: -8px;margin-right:5px;font-size: 2.5rem">menu</i>Order Please</h3>
+			<h3 style="margin-bottom: 0px;"><i class="medium material-icons click menu" style="vertical-align: -8px;margin-right:5px;font-size: 2.5rem">menu</i>Order Please</h3>
 		</div>
 		<div class="container">
 			<div class="section">
@@ -69,31 +69,33 @@
 	</div>
 	<div class="page" id="page-yourorders">
 		<div class="section z-depth-3" style="padding: 1rem 0rem 1rem 0.8rem;">
-			<h3 style="margin-bottom: 0px;"><i class="medium material-icons click" style="vertical-align: -8px;margin-right:5px;font-size: 2.5rem">menu</i>Your Orders</h3>
+			<h3 style="margin-bottom: 0px;"><i class="medium material-icons click menu" style="vertical-align: -8px;margin-right:5px;font-size: 2.5rem">menu</i>Your Orders</h3>
 		</div>
 		<div class="container" id="ordered">
 			<div class="section"></div>
 			<div class="marginpadding">
 				<div class="row z-depth-3 roundpadding">
-					<div class="col s2">
-						<span class="grey-text">ORDER ID #</span><span class="grey-text">22</span>
-						<h3>Ordered</h3>
-						<span class="grey-text"></span>
-					</div>
-
-					<div class="col s12 centered">
-						<span class="grey-text">Items</span><br>
-						<div class="chip" >NO. 4 3</div><div class="chip" >NO. 4 3</div><div class="chip" >NO. 4 3</div><div class="chip" >NO. 4 3</div><div class="chip" >NO. 4 3</div>
+					<div class="col s2 center">
+						<span class="grey-text">Loading</span><br><h7><div class="tiny preloader-wrapper small active">
+						    <div class="spinner-layer spinner-blue-only">
+						      <div class="circle-clipper left">
+						        <div class="circle"></div>
+						      </div><div class="gap-patch">
+						        <div class="circle"></div>
+						      </div><div class="circle-clipper right">
+						        <div class="circle"></div>
+						      </div>
+						    </div>
+						  </div></h7>
 					</div>
 				</div>
 			</div>
-					
-			<div class="fixed-action-btn">
-			  <a class="btn-floating btn-large waves-effect waves-light purple" id="but-additem">
+		</div>
+		<div class="fixed-action-btn">
+			  <a class="btn-floating btn-large waves-effect waves-light purple" onclick="app.clickPage('orderlist')">
 			    <i class="large material-icons">add</i>
 			  </a>
 			</div>
-		</div>
 	</div>
 	<div class="page" id="page-additem">
 		<div class="section purple white-text z-depth-3" style="padding: 1rem 0rem 1rem 0.8rem;">
