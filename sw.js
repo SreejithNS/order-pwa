@@ -1,4 +1,4 @@
-var CACHE_NAME = 'test-run-04-11-2018';
+var CACHE_NAME = 'test-run2-04-11-2018';
 var urlsToCache = [
 	'/',
 	"/js/materialize.min.js",
@@ -11,6 +11,7 @@ var urlsToCache = [
   "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css",
 	"/js/index.js",
 	"/style.css",
+  "/index.html",
 	"/icon?family=Material+Icons"
 ];
 
@@ -62,6 +63,7 @@ self.addEventListener('fetch', function(event) {
 
             caches.open(CACHE_NAME)
               .then(function(cache) {
+
                 cache.put(event.request, responseToCache);
               });
 

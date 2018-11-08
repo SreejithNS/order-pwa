@@ -3,26 +3,26 @@
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title>Order</title>
-	<link rel="manifest" href="/manifest.json">
+	<!--link rel="manifest" href="/manifest.json"-->
 	<meta name="keywords" content="" />
 	<meta name="description" content="" />
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+	<link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+	<link href="../style.css" rel="stylesheet" type="text/css" media="screen" />
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 	<meta name="theme-color" content="#7b1fa2">
 	<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-	<script type="text/javascript" src="js/alerty.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="css/alerty.css">
+	<script type="text/javascript" src="../js/alerty.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/alerty.css">
 </head>
 
 <body>
 	<ul id="slide-out" class="sidenav">
 		<li><div class="user-view">
 		  <div class="background">
-		    <img src="img/back.jpg">
+		    <img src="../img/back.jpg">
 		  </div>
 		  <!---a href="#user"><img class="circle" src="images/yuna.jpg"></a--->
 		  <a href="#name"><span id="app-username" class="white-text name">Sreejith N</span></a>
@@ -34,42 +34,10 @@
 		<li><a class="subheader">Created by Sreejith N</a></li>
 		<li><a class="waves-effect" href="#!">Jithu Appalam Products</a></li>
 	</ul>
-	
-	<div class="page" id="page-orderlist">
+
+	<div class="page" id="page-orders">
 		<div class="section z-depth-3" style="padding: 1rem 0rem 1rem 0.8rem;">
-			<h3 style="margin-bottom: 0px;"><i class="medium material-icons click menu" style="vertical-align: -8px;margin-right:5px;font-size: 2.5rem">menu</i>Order Please</h3>
-		</div>
-		<div class="container">
-			<div class="section">
-			<table class="striped highlight ">
-				<thead>
-					<tr>
-						<th></th>
-						<th>Item</th>
-						<th>Quantity</th>
-					</tr>
-				</thead>
-				<tbody id="order-list">
-				</tbody>
-			</table>
-			</div>
-			<div class="row">
-				<div class="col s4">
-					<button onclick="orders.submit()" class="btn waves-effect waves-light purple white-text">Send
-						<i class="material-icons right">send</i>
-					</button>
-				</div>
-			</div>	
-			<div class="fixed-action-btn">
-			  <a class="btn-floating btn-large waves-effect waves-light purple" id="but-additem">
-			    <i class="large material-icons">add</i>
-			  </a>
-			</div>
-		</div>
-	</div>
-	<div class="page" id="page-yourorders">
-		<div class="section z-depth-3" style="padding: 1rem 0rem 1rem 0.8rem;">
-			<h3 style="margin-bottom: 0px;"><i class="medium material-icons click menu" style="vertical-align: -8px;margin-right:5px;font-size: 2.5rem">menu</i>Your Orders</h3>
+			<h3 style="margin-bottom: 0px;"><i class="medium material-icons click menu" style="vertical-align: -8px;margin-right:5px;font-size: 2.5rem">menu</i>Orders</h3>
 		</div>
 		<div class="container" id="ordered">
 			<div class="section"></div>
@@ -158,7 +126,7 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" src="js/materialize.min.js"></script>
+	<script type="text/javascript" src="../js/materialize.min.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
 </body>
 		

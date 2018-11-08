@@ -1,6 +1,4 @@
 <?php
-
-
 	$do = $_GET['do'];
 	if(!empty($do)){
 		switch($do){
@@ -12,6 +10,12 @@
 			break;
 			case 'delete':
 			delete();
+			break;
+			case 'allorders':
+			allorders();
+			break;
+			case 'ready':
+			ready();
 			break;
 			default:
 			echo 0;
@@ -77,7 +81,7 @@
 			echo 'Nice Try but Im secured man!!';
 			return;
 		};
-		$query = "SELECT * FROM `orders` WHERE `userid` = ".$data." ORDER BY `id` DESC";
+		$query = "SELECT * FROM `orders` WHERE `userid` = ".$data." ORDER BY `id` DESC, `status` ASC";
 		$arr = array();
 		if ($result = $conn->query($query)) {
 
@@ -91,4 +95,48 @@
 		}
 		$conn->close();
 	}
+	function allorders(){
+			$username = 'root';
+	$password = 'usbw';
+	$host = 'localhost';
+	$dbname = 'id3506608_cgi';
+		$conn = new mysqli($host, $username, $password, $dbname);
+	if ($conn->connect_error) {
+    die("DB Connection failed: " . $conn->connect_error);
+	}
+
+	$query = "SELECT * FROM `orders` ORDER BY `status` ASC, `id` DESC";
+		$arr = array();
+		if ($result = $conn->query($query)) {
+
+		    while ($row = $result->fetch_assoc()) {
+			    array_push($arr,json_encode($row));
+		    }
+		    echo json_encode($arr);
+			
+		    /* free result set */
+		    $result->free();
+		}
+		$conn->close();
+	}
+	function ready(){
+		$username = 'root';
+		$password = 'usbw';
+		$host = 'localhost';
+		$dbname = 'id3506608_cgi';
+		$conn = new mysqli($host, $username, $password, $dbname);
+		if ($conn->connect_error) {
+	    	die("DB Connection failed: " . $conn->connect_error);
+		}
+
+		$id = $_GET['data'];
+		$sql = "UPDATE  `id3506608_cgi`.`orders` SET  `status` =  '1' WHERE  `orders`.`id` =".$id;
+		if ($conn->query($sql) === TRUE) {
+		    echo 1;
+		} else {
+		    echo $conn->error;
+		}
+		$conn->close();
+	}
+
 ?>
