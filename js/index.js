@@ -98,6 +98,7 @@ var orders = {
 				M.toast({html: 'Order sent successfully',displayLength:2000});
 			}
 			$('#order-list').children().remove();
+			orders.list = [];
 			app.clickPage('yourorders',true);
 		}
 		);
