@@ -100,6 +100,7 @@ var orders = {
 			$('#order-list').children().remove();
 			orders.list = [];
 			app.clickPage('yourorders',true);
+			orders.getOrders(1,1);
 		}
 		);
 		}else{
@@ -108,27 +109,31 @@ var orders = {
 			$("#order-list").children().remove();
 		}
 	},
-	getOrders: (a)=>{
+	getOrders: (a,b)=>{
 		var data = {
 			do: "myorders",
 			data: app.userid
 		}
 		$.get("cgi/index.php",data,
 			(res)=>{
+				var temp = [];
 				if(res !== orders.raw) {
 					orders.raw = res;
 					//M.toast({html: 'One of your order is ready',displayLength:2000});
 					var a = JSON.parse(res);
-					var temp = [];
 					a.forEach((d)=>temp.push(JSON.parse(d)));
 					temp.forEach((d,i)=>{
 						temp[i].odr = JSON.parse(temp[i].odr)
 					});
+					orders.updateNotice(temp,'sync');
 					orders.ordered = temp;
 				}else{
 					a=false;
 				}
-				if(a) orders.loadOrdered();
+				if(a) {
+					orders.loadOrdered();
+					if(b) orders.updateNotice(0,'submit');
+				}
 			}
 			);
 	},
@@ -183,6 +188,26 @@ var orders = {
 		}, function(){
 		  M.toast({html:'Nothing happened!'});
 		});
+	},
+	updateNotice:(newList,process)=>{
+		switch(process){
+			case 'submit'://updateNotice for Submited order with ID
+			M.toast({html:`#${orders.ordered[0].id} is the OrderID`});
+			break;
+			case 'sync'://updateNotice for Changes in order status
+			console.log(newList);console.log(orders.ordered);
+			newList.forEach(elem=>{
+					orders.ordered.forEach(mirror=>{
+						if(mirror.id == elem.id){
+							if(mirror.status !== elem.status){
+							let sts = (elem.status == 0)? "Ordered":"Ready";
+							M.toast({html:`Your order #${elem.id} is ${sts}`});
+							}
+						}
+					});
+			});
+			break;
+		}
 	}
 };
 
@@ -217,6 +242,7 @@ $('.itembut').map((i,dom)=>$(dom).on('click',(e)=>{
 
 $(document).ready(function(){
     	app.init();
+    	$('div[style*="text-align: right;position: fixed;z-index:9999999;bottom: 0; width: 100%;cursor: pointer;line-height: 0;display:block !important;"]').hide();
 });
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
