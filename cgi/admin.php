@@ -28,8 +28,7 @@
 		  <a href="#name"><span id="app-username" class="white-text name">Sreejith N</span></a>
 		  <a href="#email"><span id="app-userid" class="white-text number">nssreejith229@gmail.com</span></a>
 		</div></li>
-		<li><a href="#" onclick="app.clickPage('yourorders')"><i class="material-icons">featured_play_list</i>Your orders</a></li>
-		<li><a href="#"  onclick="app.clickPage('orderlist')"><i class="material-icons">add_box</i>New Order</a></li>
+		<li><a href="#" onclick="app.clickPage('orders')"><i class="material-icons">featured_play_list</i>Orders</a></li>
 		<li><div class="divider"></div></li>
 		<li><a class="subheader">Created by Sreejith N</a></li>
 		<li><a class="waves-effect" href="#!">Jithu Appalam Products</a></li>
@@ -71,62 +70,7 @@
 			  </div>
 			</div>
 	</div>
-	<div class="page" id="page-additem">
-		<div class="section purple white-text z-depth-3" style="padding: 1rem 0rem 1rem 0.8rem;">
-				<h3 style="margin-bottom: 0px;"><i class="material-icons click" style="vertical-align: -8px;margin-right:5px;font-size: 2.5rem" id="but-home">navigate_before</i> Add Item to your order</h4>
-		</div>
-		<div class="container">
-			<div class='section'>
-				<p class="fn1 grey-text">Select the Brand</p>
-				 <div class="nav nav-pill btn-group fn2" role="group" aria-label="First group">
-				    <button type="button" class="btn fn1 pink darken-3" data-toggle="pill" href="#tab-jithu">Jithu</button>
-				    <button type="button" class="btn fn1 pink darken-3" data-toggle="pill" href="#tab-super">Super</button>
-			  	  </div>
-				  <div class="tab-content">
-				    <div id="tab-jithu" class="tab-pane fade in active">
-				    	<br>
-				      <p class="fn1 grey-text">Round</p>
-						<div class="btn-group " role="group" aria-label="First group">
-						    <button type="button" class="btn fn2 pink darken-4 itembut">A1</button>
-						    <button type="button" class="btn fn2 pink darken-4 itembut">2</button>
-						    <button type="button" class="btn fn2 pink darken-4 itembut">3</button>
-						    <button type="button" class="btn fn2 pink darken-4 itembut">4</button>
-						    <button type="button" class="btn fn1 pink darken-4 itembut">Baby</button>
-						    <button type="button" class="btn fn1 pink darken-4 itembut">Box</button>
-						    <button type="button" class="btn fn2 pink darken-4 itembut">2/3</button>
-					  	</div>
-					  	<br><br>
-					  	<p class="fn1 grey-text">Chips</p>
-					  	<div class="btn-group " role="group" aria-label="First group">
-						    <button type="button" class="btn fn2 pink darken-4 itembut">50g</button>
-						    <button type="button" class="btn fn2 pink darken-4 itembut">500g</button>
-						    <button type="button" class="btn fn2 pink darken-4 itembut">80g</button>
-						    <button type="button" class="btn fn2 pink darken-4 itembut">Spcl 100g</button>
-					  	</div>
-				    </div>
-				    <div id="tab-super" class="tab-pane fade">
-				      <h3>Menu 1</h3>
-				      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-				    </div>
-				  </div><br>
-				  <div class="section" id="templist">
-				  </div>
-			</div>
-			<div class="fixed-action-btn">
-			  <a class="btn-floating btn-large waves-effect waves-light purple" id="orderlistmenu" onclick="orders.save()">
-			    <i class="large material-icons">done</i>
-			  </a>
-			  <div class="tap-target" data-target="orderlistmenu">
-			    <div class="tap-target-content">
-			      <h5>Add Item</h5>
-			      <p>Tap here to add items to your order</p>
-			    </div>
-			  </div>
-			</div>
-			</div>
-		</div>
-	</div>
+	
+</body>
 	<script type="text/javascript" src="../js/materialize.min.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
-</body>
-		
