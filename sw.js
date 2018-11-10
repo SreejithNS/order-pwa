@@ -1,4 +1,4 @@
-const cacheName = 'v1.3';
+const cacheName = 'v1.5';
 
 const cacheAssets = [
   "/js/materialize.min.js",
@@ -55,3 +55,12 @@ self.addEventListener('fetch', e => {
   console.log('Service Worker: Fetching');
   e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));
 });
+
+
+
+
+
+
+
+
+
