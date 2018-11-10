@@ -139,13 +139,14 @@ var orders = {
 		$('#ordered').prepend('<div class="section"></div>');
 		orders.ordered.forEach((d)=>{
 			//orders.complete =(d.status == 0)? false:true;
-			var id,sts,time,chips,button;
+			var id,sts,time,chips,button,sname;
 			id = d.id;
+			sname = d.name;
 			sts = (d.status == 0)? "Ordered":"Ready";
 			var epoch = new Date(1541170348750);
 			time = epoch.toLocaleString();
 			chips = "";
-			button = (d.status == 0)? `<br><a class="waves-effect waves-teal btn-flat" onclick="orders.ready(${id})"><i class="tiny material-icons" style="vertical-align:-4px">done</i> Done</a>`:``;
+			button = (d.status == 0)? `<a class="waves-effect waves-teal btn-flat teal-text" onclick="orders.ready(${id})"><i class="tiny material-icons" style="vertical-align:-4px">done</i> Done</a>`:``;
 			d.odr.forEach((o)=>{
 				let name = o.item +' - '+o.quantity;
 				chips += `<div class='chip'>${name}</div>`;
@@ -154,14 +155,13 @@ var orders = {
 					<div class="row z-depth-3 roundpadding" ${(d.status==1)? "style='opacity:0.8'":""}>
 					<div class="col s2">
 						<span class="grey-text">ORDER ID #</span><span class="grey-text">${id}</span>
-						<h3>${sts}</h3>
-						<span class="grey-text">${time}</span>
+						<h3>${sname}</h3><span class="grey-text">${sts} |</span>
+						<span class="grey-text"> ${time}</span>
 					</div>
 
 					<div class="col s12 centered">
 						<span class="grey-text">Items</span><br>
-						${chips}
-						${button}
+						${chips}<br>${button}<a class="waves-effect waves-red btn-flat red-text" onclick="orders.delete(${id})"><i class="tiny material-icons"  style="vertical-align:-4px">delete_outline</i>Delete</a>
 					</div> 
 				</div>
 			</div>`;
@@ -180,6 +180,25 @@ var orders = {
 				console.log(res);
 				if(res == 1) {
 					M.toast({html: 'Order #'+id+' updated!',displayLength:2000});
+					orders.getOrders(true);
+				}else{
+					alerty.alert('Sorry, Please check your internet Connection');
+				}
+			});
+		}, function(){
+		  M.toast({html:'Nothing happened!'});
+		});
+	},
+	delete: (id)=>{
+		var data = {
+			'do':"delete",
+			'data': id
+		};
+		alerty.confirm('Delete your order?', function() {
+		$.get("index.php",data,
+			(res)=>{
+				if(res == 1) {
+					M.toast({html: `Order:#${id} deleted!`,displayLength:2000});
 					orders.getOrders(true);
 				}else{
 					alerty.alert('Sorry, Please check your internet Connection');
