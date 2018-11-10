@@ -1,4 +1,8 @@
 <?php
+	$GLOBALS['username'] = 'id3506608';
+	$GLOBALS['password'] = 'cgipassword';
+	$GLOBALS['host'] = 'localhost';
+	$GLOBALS['dbname'] = 'id3506608_cgi';
 	$do = $_GET['do'];
 	if(!empty($do)){
 		switch($do){
@@ -22,18 +26,14 @@
 		}
 	}
 	function place(){
-			$username = 'root';
-	$password = 'usbw';
-	$host = 'localhost';
-	$dbname = 'id3506608_cgi';
-		$conn = new mysqli($host, $username, $password, $dbname);
+		$conn = new mysqli($GLOBALS['host'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
 	if ($conn->connect_error) {
     die("DB Connection failed: " . $conn->connect_error);
 	}
 		$data = $_GET['data'];
 		$obj = json_decode($data);
 		$c = ",";$q = "'";
-		$obj->status = 'placed';
+		$obj->status = 0;
 		$replace = $obj->userid.$c.
 				   $q.$obj->name.$q.$c.
 				   $q.$obj->odr.$q.$c.
@@ -49,11 +49,8 @@
 		$conn->close();
 	}
 	function delete(){
-		$username = 'root';
-		$password = 'usbw';
-		$host = 'localhost';
-		$dbname = 'id3506608_cgi';
-		$conn = new mysqli($host, $username, $password, $dbname);
+	
+		$conn = new mysqli($GLOBALS['host'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
 		if ($conn->connect_error) {
 	    	die("DB Connection failed: " . $conn->connect_error);
 		}
@@ -68,11 +65,8 @@
 		$conn->close();
 	}
 	function yourorders(){
-			$username = 'root';
-	$password = 'usbw';
-	$host = 'localhost';
-	$dbname = 'id3506608_cgi';
-		$conn = new mysqli($host, $username, $password, $dbname);
+			
+		$conn = new mysqli($GLOBALS['host'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
 	if ($conn->connect_error) {
     die("DB Connection failed: " . $conn->connect_error);
 	}
@@ -96,11 +90,8 @@
 		$conn->close();
 	}
 	function allorders(){
-			$username = 'root';
-	$password = 'usbw';
-	$host = 'localhost';
-	$dbname = 'id3506608_cgi';
-		$conn = new mysqli($host, $username, $password, $dbname);
+			
+		$conn = new mysqli($GLOBALS['host'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
 	if ($conn->connect_error) {
     die("DB Connection failed: " . $conn->connect_error);
 	}
@@ -120,11 +111,8 @@
 		$conn->close();
 	}
 	function ready(){
-		$username = 'root';
-		$password = 'usbw';
-		$host = 'localhost';
-		$dbname = 'id3506608_cgi';
-		$conn = new mysqli($host, $username, $password, $dbname);
+		
+		$conn = new mysqli($GLOBALS['host'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
 		if ($conn->connect_error) {
 	    	die("DB Connection failed: " . $conn->connect_error);
 		}
