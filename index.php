@@ -119,13 +119,17 @@
 				    	<br>
 				      <p class="fn1 grey-text">Round</p>
 						<div class="btn-group " role="group" aria-label="First group">
-						    <button type="button" class="btn fn2 pink darken-4 itembut">A1</button>
-						    <button type="button" class="btn fn2 pink darken-4 itembut">2</button>
-						    <button type="button" class="btn fn2 pink darken-4 itembut">3</button>
-						    <button type="button" class="btn fn2 pink darken-4 itembut">4</button>
-						    <button type="button" class="btn fn1 pink darken-4 itembut">Baby</button>
-						    <button type="button" class="btn fn1 pink darken-4 itembut">Box</button>
-						    <button type="button" class="btn fn2 pink darken-4 itembut">2/3</button>
+						    <button type="button" class="btn fn2 pink darken-4 itembut" data-mass="300g">A1</button>
+						    <button type="button" class="btn fn2 pink darken-4 itembut" data-mass="200g">No. 2</button>
+						    <button type="button" class="btn fn2 pink darken-4 itembut" data-mass="150g">No. 3</button>
+						    <button type="button" class="btn fn2 pink darken-4 itembut" data-mass="100g">No. 4</button>
+						</div>
+						<br><br>
+						<p class="fn1 grey-text">Round Specials</p>
+						<div class="btn-group " role="group" aria-label="First group">
+						    <button type="button" class="btn fn1 pink darken-4 itembut" data-mass="50g">Baby</button>
+						    <button type="button" class="btn fn1 pink darken-4 itembut" data-mass="200g">Box</button>
+						    <button type="button" class="btn fn2 pink darken-4 itembut" data-mass="500g">No. 2/3</button>
 					  	</div>
 					  	<br><br>
 					  	<p class="fn1 grey-text">Chips</p>

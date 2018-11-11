@@ -213,13 +213,16 @@ var orders = {
 
 $('.itembut').map((i,dom)=>$(dom).on('click',(e)=>{
 	var k = $(e.target).html();
-	var item = (/^\d+$/.test(k))? 'NO. '+k : k;
+	var price = ($(e.target).attr('data-mass'))? 'Weight '+$(e.target).attr('data-mass'):'Chips';
+	var item = k;//(/^\d+$/.test(k))? 'NO. '+k : k;
 	console.log(typeof(item));
 	
-	alerty.prompt('Quantity',
-		{
+	alerty.prompt(`${item} - ${price}`,
+		{	
+			title:'Quantity',
 			inputType: 'number',
-			inputPlaceholder: 'Kg / Rolls',
+			okLabel:'ADD',
+			inputPlaceholder: 'Rolls',
 			inputValue: ''
 		},(input)=>{
 			var order = {
