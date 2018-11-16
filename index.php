@@ -29,7 +29,7 @@
 		  <a href="#email"><span id="app-userid" class="white-text number">nssreejith229@gmail.com</span></a>
 		</div></li>
 		<li><a href="#" onclick="app.clickPage('yourorders')"><i class="material-icons">featured_play_list</i>Your orders</a></li>
-		<li><a href="#"  onclick="app.clickPage('orderlist')"><i class="material-icons">add_box</i>New Order</a></li>
+		<li><a href="#"  onclick="app.clickPage('additem')"><i class="material-icons">add_box</i>New Order</a></li>
 		<li><div class="divider"></div></li>
 		<li><a class="subheader">Created by Sreejith N</a></li>
 		<li><a class="waves-effect" href="#!">Jithu Appalam Products</a></li>
@@ -55,17 +55,17 @@
 			</div>
 			<div class="row">
 				<div class="col s4">
-					<button onclick="orders.submit()" class="btn waves-effect waves-light purple white-text">Send
-						<i class="material-icons right">send</i>
+					<button onclick="app.clickPage('additem')" class="waves-effect waves-purple grey-text btn-flat">Add Items
+						<i class="material-icons right" style="vertical-align: 4px">add</i>
 					</button>
 				</div>
 			</div>	
-			<div class="fixed-action-btn">
-			  <a class="btn-floating btn-large waves-effect waves-light purple" id="but-additem">
-			    <i class="large material-icons">add</i>
+		</div>
+		<div class="fixed-action-btn">
+			  <a class="btn-floating btn-large waves-effect waves-light purple" onclick="orders.submit()">
+			    <i class="material-icons right">send</i>
 			  </a>
 			</div>
-		</div>
 	</div>
 	<div class="page" id="page-yourorders">
 		<div class="section z-depth-3" style="padding: 1rem 0rem 1rem 0.8rem;">
@@ -91,8 +91,9 @@
 				</div>
 			</div>
 		</div>
+		<div style="position: absolute;">
 		<div class="fixed-action-btn">
-			  <a class="btn-floating btn-large waves-effect waves-light purple" id="orderedmenu" onclick="app.clickPage('orderlist');$('.tap-target').next()">
+			  <a class="btn-floating btn-large waves-effect waves-light purple" id="orderedmenu" onclick="app.clickPage('additem');$('.tap-target').next()">
 			    <i class="large material-icons">add</i>
 			  </a>
 			  <div class="tap-target" data-target="orderedmenu">
@@ -101,7 +102,8 @@
 			      <p>Tap here to place an order</p>
 			    </div>
 			  </div>
-			</div>
+		</div>
+		</div>
 	</div>
 	<div class="page" id="page-additem">
 		<div class="section purple white-text z-depth-3" style="padding: 1rem 0rem 1rem 0.8rem;">
@@ -119,25 +121,25 @@
 				    	<br>
 				      <p class="fn1 grey-text">Round</p>
 						<div class="btn-group " role="group" aria-label="First group">
-						    <button type="button" class="btn fn2 pink darken-4 itembut" data-mass="300g">A1</button>
-						    <button type="button" class="btn fn2 pink darken-4 itembut" data-mass="200g">No. 2</button>
-						    <button type="button" class="btn fn2 pink darken-4 itembut" data-mass="150g">No. 3</button>
-						    <button type="button" class="btn fn2 pink darken-4 itembut" data-mass="100g">No. 4</button>
+						    <button type="button" class="btn fn2 pink darken-4 itembut" data-mass="300g" data-price="">A1</button>
+						    <button type="button" class="btn fn2 pink darken-4 itembut" data-mass="200g" data-price="">No. 2</button>
+						    <button type="button" class="btn fn2 pink darken-4 itembut" data-mass="150g" data-price="">No. 3</button>
+						    <button type="button" class="btn fn2 pink darken-4 itembut" data-mass="100g" data-price="">No. 4</button>
 						</div>
 						<br><br>
 						<p class="fn1 grey-text">Round Specials</p>
 						<div class="btn-group " role="group" aria-label="First group">
-						    <button type="button" class="btn fn1 pink darken-4 itembut" data-mass="50g">Baby</button>
-						    <button type="button" class="btn fn1 pink darken-4 itembut" data-mass="200g">Box</button>
-						    <button type="button" class="btn fn2 pink darken-4 itembut" data-mass="500g">No. 2/3</button>
+						    <button type="button" class="btn fn1 pink darken-4 itembut" data-mass="50g" data-price="">Baby</button>
+						    <button type="button" class="btn fn1 pink darken-4 itembut" data-mass="200g" data-price="">Box</button>
+						    <button type="button" class="btn fn2 pink darken-4 itembut" data-mass="500g" data-price="">No. 2/3</button>
 					  	</div>
 					  	<br><br>
 					  	<p class="fn1 grey-text">Chips</p>
 					  	<div class="btn-group " role="group" aria-label="First group">
-						    <button type="button" class="btn fn2 pink darken-4 itembut">50g</button>
-						    <button type="button" class="btn fn2 pink darken-4 itembut">500g</button>
-						    <button type="button" class="btn fn2 pink darken-4 itembut">80g</button>
-						    <button type="button" class="btn fn2 pink darken-4 itembut">Spcl 100g</button>
+						    <button type="button" class="btn fn2 pink darken-4 itembut" data-price="">50g</button>
+						    <button type="button" class="btn fn2 pink darken-4 itembut" data-price="">500g</button>
+						    <button type="button" class="btn fn2 pink darken-4 itembut" data-price="">80g</button>
+						    <button type="button" class="btn fn2 pink darken-4 itembut" data-price="">Spcl 100g</button>
 					  	</div>
 				    </div>
 				    <div id="tab-super" class="tab-pane fade">

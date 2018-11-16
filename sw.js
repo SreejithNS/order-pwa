@@ -1,4 +1,4 @@
-const cacheName = 'v1.7';
+const cacheName = 'v1.8.test';
 
 console.log('Hellp');
 const cacheAssets = [
@@ -56,8 +56,14 @@ self.addEventListener('fetch', e => {
   console.log('Service Worker: Fetching');
   e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));
 });
+var i = 0;
+self.addEventListener('message', function(event) {
+    var data = event.data;
 
-
-
-
+    if (data.do == "cacheName") {
+        event.ports[i++].postMessage({
+            "data": cacheName
+        });
+    }
+});
 

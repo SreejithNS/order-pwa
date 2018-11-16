@@ -12,7 +12,28 @@ body,html {
 	height: 100%;
 	width: 100%;
 	overflow: scroll;
+	transition: 0.5s;
+	transform: translate(100%);
+	opacity: 0;
+	transition-timing-function: ease-out; 
 }
+
+.show{
+	opacity: 1;
+	transform: translate(0%);
+}
+
+@keyframes fadeIn {
+            0% {transform: translate(0,10px);}
+            100% {opacity: 1;transform: translate(0,0);}
+         }
+         
+         .fadeIn {
+         	opacity: 0;
+            animation: fadeIn 0.2s linear;
+  			animation-iteration-count: 1;
+  			animation-fill-mode: forwards;
+         }
 
 .rel{
 	position: relative;

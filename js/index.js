@@ -4,6 +4,8 @@ var app = {
 	userid: false,
 	username: null,
 	sync: null,
+	swPort:1,
+	swPorts : new MessageChannel(),
 	getName:()=>{
 		if(localStorage.getItem('username')!==null && localStorage.getItem('username')!==""){
 			app.username = localStorage.getItem('username');
@@ -29,8 +31,7 @@ var app = {
 		app.userid = id;
 		$('#app-username').html(app.username).css('text-transform','capitalize');
 		$('#app-userid').html(app.userid);
-		$('#but-additem').on('click',()=>$('#page-additem').fadeIn());
-		$('#but-home').on('click',()=>$('#page-additem').fadeOut());
+		$('#but-home').on('click',()=>app.clickPage('orderlist'));
 		$('.menu').each((i,e)=>{
 			console.log($(e));
 			$(e).on('click',()=>$('.sidenav').sidenav('open'));
@@ -41,6 +42,7 @@ var app = {
 		},5*1000);
 		app.clickPage('yourorders');
 		$('.tap-target').tapTarget();
+		app.swPorts.port1.onmessage = (e)=>app.swMessageHandler(e);
 	},
 	clickPage:(id,close)=>{
 		if(!close) $('.sidenav').sidenav('close');
@@ -51,10 +53,27 @@ var app = {
 				name = name.join('');
 			if(name == id){
 				$(page).show();
+				$(page).addClass('show');
 			}else{	
 				$(page).hide();
+				$(page).removeClass('show');
 			}
 		});
+	},
+	swMessage:(work,data)=>{
+       return new Promise(function(resolve, reject) {
+	    app.swPorts.port1/*["port"+app.swPort++]*/.onmessage = function(event) {
+      if (event.data.error) {
+        reject(event.data.error);
+      } else {
+        resolve(event.data);
+      }
+    };
+    let command = {'do':work,'data':data};
+    console.log(app.swPorts.port2);
+    navigator.serviceWorker.controller.postMessage(command,
+      [app.swPorts.port2/*["port"+(++app.swPort)]*/]);
+  	});
 	}
 };
 
@@ -80,7 +99,7 @@ var orders = {
 		})
 		orders.templist = []
 		$('#templist').children().remove()
-		$('#page-additem').fadeOut()
+		app.clickPage('orderlist')
 	},
 	submit: ()=>{
 		if(orders.list.length !== 0){
@@ -140,8 +159,10 @@ var orders = {
 	loadOrdered: ()=>{
 		$('#ordered').children().remove();
 		$('#ordered').prepend('<div class="section"></div>');
+		var delay = 0;
 		orders.ordered.forEach((d)=>{
 			var id,sts,time,chips;
+			delay += 0.1;
 			id = d.id;
 			sts = (d.status == 0)? "Ordered":"Ready";
 			var epoch = new Date(1541170348750);
@@ -151,7 +172,7 @@ var orders = {
 				let name = o.item +' - '+o.quantity;
 				chips += `<div class='chip'>${name}</div>`;
 			});
-			var data = `<div class="marginpadding">
+			var data = `<div class="marginpadding fadeIn" style="animation-delay:${delay}s">
 					<div class="row z-depth-3 roundpadding">
 					<div class="col s2">
 						<span class="grey-text">ORDER ID #</span><span class="grey-text">${id}</span>
@@ -195,7 +216,6 @@ var orders = {
 			M.toast({html:`#${orders.ordered[0].id} is the OrderID`});
 			break;
 			case 'sync'://updateNotice for Changes in order status
-			console.log(newList);console.log(orders.ordered);
 			newList.forEach(elem=>{
 					orders.ordered.forEach(mirror=>{
 						if(mirror.id == elem.id){
@@ -227,13 +247,13 @@ $('.itembut').map((i,dom)=>$(dom).on('click',(e)=>{
 		},(input)=>{
 			var order = {
 				'item': k,
-				'quantity': input
+				'quantity': input +' Rolls'
 			};
 			orders.templist.push(order);
 			$('#templist').append($('<div></div>')
 				.addClass('chip')
 				.attr('onclick','orders.remove('+(orders.templist.length-1)+')')
-				.html(item+" "+order.quantity+"<i class='close material-icons'>close</i>")
+				.html(item+" - "+order.quantity+"<i class='close material-icons'>close</i>")
 				.attr('itemid',orders.templist.indexOf(order)));
 		},()=>{
 			alerty.alert('You must enter quantity');
