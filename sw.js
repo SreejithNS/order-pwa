@@ -32,7 +32,7 @@ self.addEventListener('install', e => {
       .then(() => self.skipWaiting())
   );
 });
-//
+////
 // Call Activate Event
 self.addEventListener('activate', e => {
   console.log('Service Worker: Activated');
