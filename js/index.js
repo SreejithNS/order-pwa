@@ -1,8 +1,7 @@
-
-
 var app = {
 	userid: false,
 	username: null,
+	version:'v1.9',
 	sync: null,
 	swPort:1,
 	swPorts : new MessageChannel(),
@@ -33,7 +32,6 @@ var app = {
 		$('#app-userid').html(app.userid);
 		$('#but-home').on('click',()=>app.clickPage('orderlist'));
 		$('.menu').each((i,e)=>{
-			console.log($(e));
 			$(e).on('click',()=>$('.sidenav').sidenav('open'));
 		});
 		$('.sidenav').sidenav();
@@ -70,7 +68,6 @@ var app = {
       }
     };
     let command = {'do':work,'data':data};
-    console.log(app.swPorts.port2);
     navigator.serviceWorker.controller.postMessage(command,
       [app.swPorts.port2/*["port"+(++app.swPort)]*/]);
   	});
@@ -198,7 +195,6 @@ var orders = {
 		alerty.confirm('Delete your order?', function() {
 		$.get("cgi/index.php",data,
 			(res)=>{
-				console.log(res);
 				if(res == 1) {
 					M.toast({html: 'Your Order deleted!',displayLength:2000});
 					orders.getOrders(true);
@@ -235,7 +231,7 @@ $('.itembut').map((i,dom)=>$(dom).on('click',(e)=>{
 	var k = $(e.target).html();
 	var price = ($(e.target).attr('data-mass'))? 'Weight '+$(e.target).attr('data-mass'):'Chips';
 	var item = k;//(/^\d+$/.test(k))? 'NO. '+k : k;
-	console.log(typeof(item));
+
 	
 	alerty.prompt(`${item} - ${price}`,
 		{	
@@ -270,7 +266,7 @@ $(document).ready(function(){
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
     navigator.serviceWorker.register('/sw.js').then(function(registration) {
-      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      console.log('Welcome to Orders-PWA!\nWe have a Service Worker for ' + registration.scope);
     }, function(err) {
       console.log('ServiceWorker registration failed: ', err);
     });

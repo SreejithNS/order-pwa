@@ -1,15 +1,15 @@
-const cacheName = 'v1.8.test';
+const cacheName = 'v1.9';
 
-console.log('Hellp');
+
 const cacheAssets = [
   "/js/materialize.min.js",
   "/css/materialize.min.css",
   "/css/alerty.css",
   "/js/alerty.min.js",
-  "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js",
-  "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js",
+  "/js/bootstrap.min.js",
+  "js/jquery.min.js",
   "https://fonts.googleapis.com/icon?family=Material+Icons",
-  "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css",
+  "/css/bootstrap.min.css",
   "/js/index.js",
   "/style.css",
   "/img/back.jpg",

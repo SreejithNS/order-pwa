@@ -3,18 +3,21 @@
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title>Order</title>
+	<meta name="keywords" content="orders,order,jithu,appalam,products,tirupattur,order,wholesale,manufacturer,buy,delivery" />
+	<meta name="description" content="Make your orders at ease - Jithu Group,India. (Only wholesale orders are taken)" />
+	<meta name="author" content="Jithu Group - TN,India">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<meta name="theme-color" content="#7b1fa2">
+	
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js" async="true"></script>
+	<script type="text/javascript" src="js/alerty.min.js"></script>
+
 	<link rel="manifest" href="/manifest.json">
-	<meta name="keywords" content="" />
-	<meta name="description" content="" />
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
-	<meta name="theme-color" content="#7b1fa2">
-	<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-	<script type="text/javascript" src="js/alerty.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/alerty.css">
 </head>
 
@@ -36,7 +39,7 @@
 	</ul>
 	
 	<div class="page" id="page-orderlist">
-		<div class="section z-depth-3" style="padding: 1rem 0rem 1rem 0.8rem;">
+		<div class="section z-depth-3" style="padding: 1rem 0rem 1rem 0.8rem;z-index: 999">
 			<h3 style="margin-bottom: 0px;"><i class="medium material-icons click menu" style="vertical-align: -8px;margin-right:5px;font-size: 2.5rem">menu</i>Order Please</h3>
 		</div>
 		<div class="container">
@@ -68,7 +71,7 @@
 			</div>
 	</div>
 	<div class="page" id="page-yourorders">
-		<div class="section z-depth-3" style="padding: 1rem 0rem 1rem 0.8rem;">
+		<div class="section z-depth-3" style="padding: 1rem 0rem 1rem 0.8rem;z-index: 999">
 			<h3 style="margin-bottom: 0px;"><i class="medium material-icons click menu" style="vertical-align: -8px;margin-right:5px;font-size: 2.5rem">menu</i>Your Orders</h3>
 		</div>
 		<div class="container" id="ordered">
@@ -106,7 +109,7 @@
 		</div>
 	</div>
 	<div class="page" id="page-additem">
-		<div class="section purple white-text z-depth-3" style="padding: 1rem 0rem 1rem 0.8rem;">
+		<div class="section purple white-text z-depth-3" style="padding: 1rem 0rem 1rem 0.8rem;z-index: 999">
 				<h3 style="margin-bottom: 0px;"><i class="material-icons click" style="vertical-align: -8px;margin-right:5px;font-size: 2.5rem" id="but-home">navigate_before</i> Add Item to your order</h4>
 		</div>
 		<div class="container">
