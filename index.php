@@ -14,8 +14,8 @@
       <!--link type="text/css" rel="preload" href="css/materialize.min.css" as='style' onload="this.onload=null;this.rel='stylesheet'" media="screen,projection"/-->
       <!--link rel="preload" type="text/css" href="css/bootstrap.min.css" as='style' onload="this.onload=null;this.rel='stylesheet'" /-->
       <link href="style.css" as='style' onload="this.onload=null;this.rel='stylesheet'" rel="preload" type="text/css" media="screen"/>
-<<<<<<< HEAD
-   <!--link rel="preload" type="text/css" href="css/bootstrap.min.css" as='style' onload="this.onload=null;this.rel='stylesheet'" /-->
+      <link rel="preload" type="text/css" href="css/alerty.css" as='style' onload="this.onload=null;this.rel='stylesheet'" />
+el='stylesheet'" /-->
       <link rel="preload" type="text/css" href="css/alerty.css" as='style' onload="this.onload=null;this.rel='stylesheet'" >
 =======
       <link rel="preload" type="text/css" href="css/alerty.css" as='style' onload="this.onload=null;this.rel='stylesheet'" />
