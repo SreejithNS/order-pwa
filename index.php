@@ -11,9 +11,10 @@
       <script type="text/javascript" src="js/jquery.min.js"></script><script type="text/javascript" src="js/bootstrap.min.js" async="true"></script><script type="text/javascript" src="js/alerty.min.js"></script>
       <link rel="manifest" href="/manifest.json">
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--link type="text/css" rel="preload" href="css/materialize.min.css" as='style' onload="this.onload=null;this.rel='stylesheet'" media="screen,projection"/-->
+   <!--link type="text/css" rel="preload" href="css/materialize.min.css" as='style' onload="this.onload=null;this.rel='stylesheet'" media="screen,projection"/-->
+      
       <link href="style.css" as='style' onload="this.onload=null;this.rel='stylesheet'" rel="preload" type="text/css" media="screen"/>
-      <!--link rel="preload" type="text/css" href="css/bootstrap.min.css" as='style' onload="this.onload=null;this.rel='stylesheet'" /-->
+   <!--link rel="preload" type="text/css" href="css/bootstrap.min.css" as='style' onload="this.onload=null;this.rel='stylesheet'" /-->
       <link rel="preload" type="text/css" href="css/alerty.css" as='style' onload="this.onload=null;this.rel='stylesheet'" />
       <noscript>
          <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -143,6 +144,7 @@
             </div>
          </div>
       </div>
-      </div><script type="text/javascript" src="js/materialize.min.js"></script><script type="text/javascript" src="js/index.js"></script>
+      </div>
+    <script type="text/javascript" src="js/materialize.min.js"></script><script type="text/javascript" src="js/index.js"></script>
    </body>
 </html>
