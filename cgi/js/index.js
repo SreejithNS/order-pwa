@@ -46,20 +46,22 @@ var app = {
 		app.clickPage('orders');
 		$('.tap-target').tapTarget();
 	},
-	clickPage:(id,close)=>{
-		if(!close) $('.sidenav').sidenav('close');
-		var pages = $(".page");
-		pages.each((i,page)=>{
-			var name = $(page).attr('id').split('');
-				name.splice(0,5);
-				name = name.join('');
-			if(name == id){
-				$(page).show();
-			}else{	
-				$(page).hide();
-			}
-		});
-	}
+	clickPage: (id, close) => {
+        if (!close) $('.sidenav').sidenav('close');
+        var pages = $(".page");
+        pages.each((i, page) => {
+            var name = $(page).attr('id').split('');
+            name.splice(0, 5);
+            name = name.join('');
+            if (name == id) {
+                $(page).show();
+                $(page).addClass('show')
+            } else {
+                $(page).hide();
+                $(page).removeClass('show')
+            }
+        })
+    },
 };
 
 var orders = {
