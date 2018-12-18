@@ -1,6 +1,6 @@
 var app = {
-    userid: !1,
-    username: null,
+    userid: (localStorage.getItem('userid') !== null && localStorage.getItem('userid') !== "")? localStorage.getItem('userid'):0,
+    username: (localStorage.getItem('username') !== null && localStorage.getItem('username') !== "")? localStorage.getItem('username'):0,
     version: 'v1.9',
     sync: null,
     swPort: 1,
@@ -14,8 +14,18 @@ var app = {
                 inputPlaceholder: '',
                 inputValue: ''
             }, (input) => {
-                localStorage.setItem('username', input);
-                app.getName()
+                $.get('cgi/index.php', {
+                    do: 'newid',
+                    name: input
+                    }, (a) => {
+                    if (a !== "error") {
+                       localStorage.setItem('username', input);
+                       localStorage.setItem('userid', a);
+                       app.username = input;
+                       app.userid = a;
+                       app.getName();
+                    };
+                })
             }, () => {
                 alerty.alert('Please enter your shop name!');
                 app.getName()
@@ -24,9 +34,6 @@ var app = {
     },
     init: () => {
         app.getName();
-        let id = (localStorage.getItem('userid')) ? localStorage.getItem('userid') : Date.now();
-        localStorage.setItem('userid', id);
-        app.userid = id;
         $('#app-username').html(app.username).css('text-transform', 'capitalize');
         $('#app-userid').html(app.userid);
         $('#but-home').on('click', () => app.clickPage('orderlist'));
@@ -59,6 +66,17 @@ var app = {
             }
         })
     },
+    updateToken:(token)=>{
+        $.get('cgi/index.php', {
+                    do:'token',
+                    id: app.userid,
+                    token: token
+                    }, (a) => {
+                    if (a !== "1") {
+                       M.toast({html:"Token cannot be updated"});
+                    };
+                })
+    },
     swMessage: (work, data) => {
         return new Promise(function(resolve, reject) {
             app.swPorts.port1.onmessage = function(event) {
@@ -76,6 +94,7 @@ var app = {
         })
     }
 };
+
 var orders = {
     raw: [],
     templist: [],
@@ -124,6 +143,9 @@ var orders = {
         }
     },
     getOrders: (a, b) => {
+        if(app.userid == 0){
+            return false
+        }
         var data = {
             do: "myorders",
             data: app.userid
@@ -249,3 +271,4 @@ if ('serviceWorker' in navigator) {
         })
     })
 }
+

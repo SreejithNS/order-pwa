@@ -1,5 +1,5 @@
 <?php
-	$GLOBALS['username'] = 'id3506608';
+	$GLOBALS['username'] = 'id3506608_sreejith';
 	$GLOBALS['password'] = 'cgipassword';
 	$GLOBALS['host'] = 'localhost';
 	$GLOBALS['dbname'] = 'id3506608_cgi';
@@ -8,6 +8,15 @@
 		switch($do){
 			case 'place':
 			place();
+			break;
+			case 'newid':
+			newid();
+			break;
+			case 'msg':
+			sendFCM($_GET['msg'],$_GET['id']);
+			break;
+			case 'token':
+			token();
 			break;
 			case 'myorders':
 			yourorders();
@@ -41,6 +50,37 @@
 				   $q.$obj->status.$q;
 
 		$sql = "INSERT INTO `orders`(`userid`, `name`, `odr`, `time`, `status`) VALUES (".$replace.")";
+		if ($conn->query($sql) === TRUE) {
+		    echo 1;
+		} else {
+		    echo $conn->error;
+		}
+		$conn->close();
+	}
+	function newid(){
+		$conn = new mysqli($GLOBALS['host'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
+		if ($conn->connect_error) {die("DB Connection failed: " . $conn->connect_error);}
+		$name = $_GET['name'];
+
+		$sql = "INSERT INTO `id3506608_cgi`.`shops`(`username`) VALUES ('".$name."')";
+
+		if ($conn->query($sql) === TRUE) {
+		    $last_id = $conn->insert_id;
+		    echo $last_id;
+		} else {
+		    echo "error";
+		    echo $conn->error;
+		}
+		$conn->close();
+	}
+	function token(){
+		$conn = new mysqli($GLOBALS['host'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
+		if ($conn->connect_error) {die("DB Connection failed: " . $conn->connect_error);}
+		$id = $_GET['id'];
+		$token = $_GET['token'];
+
+		$sql = "UPDATE  `id3506608_cgi`.`shops` SET  `token` =  '".$token."' WHERE  `shops`.`userid` =".$id;
+
 		if ($conn->query($sql) === TRUE) {
 		    echo 1;
 		} else {
@@ -114,17 +154,71 @@
 		
 		$conn = new mysqli($GLOBALS['host'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
 		if ($conn->connect_error) {
-	    	die("DB Connection failed: " . $conn->connect_error);
+	    	die("DB Connection failed: ".$conn->connect_error);
 		}
 
 		$id = $_GET['data'];
 		$sql = "UPDATE  `id3506608_cgi`.`orders` SET  `status` =  '1' WHERE  `orders`.`id` =".$id;
 		if ($conn->query($sql) === TRUE) {
 		    echo 1;
+		    notify($id);
 		} else {
 		    echo $conn->error;
 		}
 		$conn->close();
 	}
 
+	function notify($orderid){
+		$conn = new mysqli($GLOBALS['host'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
+		if ($conn->connect_error) {
+	    	die("DB Connection failed: ".$conn->connect_error);
+		}
+
+		$sql = "SELECT `userid` FROM `orders` WHERE `id` = '".$orderid."'";
+		$id = $conn->query($sql)->fetch_assoc();
+		if ($conn->query($sql) !== TRUE) {echo $conn->error;}
+		$conn->close();
+
+		sendFCM($orderid,$id['userid']);
+	}
+
+	function sendFCM($mess,$id) {
+
+		$conn = new mysqli($GLOBALS['host'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
+		if ($conn->connect_error) {
+	    	die("DB Connection failed: ".$conn->connect_error);
+		}
+
+		$sql = "SELECT `token` FROM `shops` WHERE `userid` = '".$id."'";
+
+		$token = $conn->query($sql)->fetch_assoc();
+
+		if ($conn->query($sql) === FALSE) {echo $conn->error;}
+		
+		$url = 'https://fcm.googleapis.com/fcm/send';
+		$fields = array (
+		        'to' => $token['token'],
+		        'notification' => array (
+		                "body" => "Your order #".$mess." is ready",
+		                "title" => "Order ready!",
+		                "icon" => "img/logo.png"
+		        )
+		);
+		$fields = json_encode ( $fields );
+		$headers = array (
+		        'Authorization: key=' . "AAAAMxRWV8Q:APA91bEkcp5MK3SJrBOYgP_HsAhGgynBSql4XZEy_MtP_sqoUAUXj4nZgPgmOEYjBVD10ptDCSB6T2U8pkgmHkV66rN88KjUIjB2I0SvZRsFakwuzY3bJcBhJ37WEQdIH7yGrKqgfX2F",
+		        'Content-Type: application/json'
+		);
+
+		$ch = curl_init ();
+		curl_setopt ( $ch, CURLOPT_URL, $url );
+		curl_setopt ( $ch, CURLOPT_POST, true );
+		curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
+		curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+		curl_setopt ( $ch, CURLOPT_POSTFIELDS, $fields );
+
+		$result = curl_exec ( $ch );
+		curl_close ( $ch );
+		$conn->close();
+	}
 ?>

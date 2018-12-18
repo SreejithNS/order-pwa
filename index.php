@@ -149,6 +149,42 @@ el='stylesheet'" /-->
          </div>
       </div>
       </div>
-    <script type="text/javascript" src="js/materialize.min.js"></script><script type="text/javascript" src="js/index.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase-messaging.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+      <script type="text/javascript" src="js/index.js"></script>
+      <script>
+        // Initialize Firebase
+        var config = {
+          apiKey: "AIzaSyAbV6lbG1eMOuOVcNxJ5Nbih3Ngvw_Yc90",
+          authDomain: "orders-pwa.firebaseapp.com",
+          databaseURL: "https://orders-pwa.firebaseio.com",
+          projectId: "orders-pwa",
+          storageBucket: "orders-pwa.appspot.com",
+          messagingSenderId: "219384534980"
+        };
+        firebase.initializeApp(config);
+
+        const messaging = firebase.messaging();
+
+         messaging.requestPermission()
+         .then(function() {
+           console.log('Notification permission granted.');
+           return messaging.getToken();
+         })
+         .then(function(token) {
+           console.log(token);//Display token
+           setTimeout(()=>app.updateToken(token),5000); //Update the token to the server.
+         })
+         .catch(function(err) { // Happen if user deney permission
+           console.log('Unable to get permission to notify.', err);
+         });
+
+         messaging.onMessage(function(payload){
+            console.log('onMessage',payload);
+            orders.getOrders()
+         })
+      </script>
    </body>
 </html>
