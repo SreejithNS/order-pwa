@@ -1,4 +1,4 @@
-const cacheName = 'v1.5-test';
+const cacheName = 'v1.91-test';
 const cacheAssets = [
 	"/js/materialize.min.js",
 	"/css/materialize.min.css", 
