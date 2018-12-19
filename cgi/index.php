@@ -30,6 +30,9 @@
 			case 'ready':
 			ready();
 			break;
+			case 'changename':
+			changename();
+			break;
 			default:
 			echo 0;
 		}
@@ -80,6 +83,21 @@
 		$token = $_GET['token'];
 
 		$sql = "UPDATE  `id3506608_cgi`.`shops` SET  `token` =  '".$token."' WHERE  `shops`.`userid` =".$id;
+
+		if ($conn->query($sql) === TRUE) {
+		    echo 1;
+		} else {
+		    echo $conn->error;
+		}
+		$conn->close();
+	}
+	function changename(){
+		$conn = new mysqli($GLOBALS['host'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
+		if ($conn->connect_error) {die("DB Connection failed: " . $conn->connect_error);}
+		$id = $_GET['id'];
+		$name = $_GET['name'];
+
+		$sql = "UPDATE  `id3506608_cgi`.`shops` SET  `username` =  '".$name."' WHERE  `shops`.`userid` =".$id;
 
 		if ($conn->query($sql) === TRUE) {
 		    echo 1;

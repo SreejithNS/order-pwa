@@ -15,11 +15,6 @@
       <!--link rel="preload" type="text/css" href="css/bootstrap.min.css" as='style' onload="this.onload=null;this.rel='stylesheet'" /-->
       <link href="style.css" as='style' onload="this.onload=null;this.rel='stylesheet'" rel="preload" type="text/css" media="screen"/>
       <link rel="preload" type="text/css" href="css/alerty.css" as='style' onload="this.onload=null;this.rel='stylesheet'" />
-el='stylesheet'" /-->
-      <link rel="preload" type="text/css" href="css/alerty.css" as='style' onload="this.onload=null;this.rel='stylesheet'" >
-=======
-      <link rel="preload" type="text/css" href="css/alerty.css" as='style' onload="this.onload=null;this.rel='stylesheet'" />
->>>>>>> 7d748229a9692fc881b7e8eece816d0d6c1deae7
       <noscript>
          <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>

@@ -1,10 +1,39 @@
 var app = {
     userid: (localStorage.getItem('userid') !== null && localStorage.getItem('userid') !== "")? localStorage.getItem('userid'):0,
     username: (localStorage.getItem('username') !== null && localStorage.getItem('username') !== "")? localStorage.getItem('username'):0,
-    version: 'v1.9',
+    version: 'v2.0test',
     sync: null,
     swPort: 1,
     swPorts: new MessageChannel(),
+    changeName:()=>{
+        alerty.prompt('Edit Shop name', {
+            inputType: 'text',
+            inputPlaceholder: '',
+            inputValue: app.username
+        }, (input) => {
+            if(input == "" || input = " " || input == "   "){
+                alerty.alert('Please enter a valid name');
+                app.changeName();
+            }else{
+            $.get('cgi/index.php', {
+                do: 'changename',
+                id: app.userid,
+                name: input
+                }, (a) => {
+                if (a !== 1) {
+                   alerty.alert('Something went wrong! Name not changed');
+                }else{
+                   localStorage.setItem('username',input);
+                   app.username = input;
+                   $('#app-username').html(app.username);
+                   M.toast({html:"Shop name changed to "+input})
+                };
+            })
+        }
+        }, () => {
+            console.log('Why have you not entered anything?');
+        })
+    },
     getName: () => {
         if (localStorage.getItem('username') !== null && localStorage.getItem('username') !== "") {
             app.username = localStorage.getItem('username')
