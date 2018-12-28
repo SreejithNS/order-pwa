@@ -1,1 +1,71 @@
 body,html{margin:0px;padding: 0px;background: #eee;}.page{background: #fff;position: fixed;left: 0px;top:0px;height: 100%;width: 100%;overflow: hidden;transition: 0.5s;transform: translate(100%);opacity: 0;transition-timing-function: ease-out;}.show{opacity: 1;transform: translate(0%);}.container{height: calc(100% - 64px);overflow-y: scroll;}@keyframes fadeIn{0%{transform: translate(0,10px);}100%{opacity: 1;transform: translate(0,0);}}.fadeIn{opacity: 0; animation: fadeIn 0.2s linear; animation-iteration-count: 1; animation-fill-mode: forwards;}.rel{position: relative;}i{-webkit-user-select: none;}.text-middle{vertical-align: middle;}.roundpadding{border-radius: 8px;padding: 4px;}.marginpadding{margin: -10px 10px 0px 10px;padding: 3px 0px 3px 0px;}.mgb0{margin-bottom: 0px;}.fn1{font-size: 1.3em!important;}.fn2{font-size: 1.5em!important;}.btn:not(:disabled):not(.disabled){cursor: pointer; min-height: 20px; max-height: 65px; height: auto;}button:focus,button:active{outline: none!important;}.alerty.alerty-show{border-radius:13px;}.click{cursor: pointer;}
+.card-cont{
+  background-color:white;
+  margin: 16px 3px 8px 3px;
+  border-radius:15px;
+  padding:16px;
+  box-shadow: 0 6px 19px rgba(0, 0, 0, 0.32);
+}
+.card-tleft{
+  color:#A2A2A2;
+  text-align:left;
+  font-size:0px;
+}
+.card-tright{
+  color:#A2A2A2;
+  text-align:right;
+}
+.cd-shopname{
+  color:#BE2EDD;
+  font-size:33px;
+  margin-top:0px;
+  margin-bottom:0px;
+}
+.cd.row{
+  margin-bottom:0px;
+}
+.fs35{
+  font-size:35px;
+}
+.cd.divider{
+  margin-top:12px;
+  margin-bottom:12px;
+  width:95%;
+  margin-left:2.5%;
+}
+.item.chip{
+  margin-left:12px!important;
+}
+
+.vendor{
+  background-color:#282828;
+  color:white;
+  font-size:18px;
+  border-radius:5px;
+  padding:2px 5px 2px 5px;
+  margin:10px 3px 3px 0px;
+}
+.totalprice {
+    font-size: 26px;
+    font-weight: 500;
+    padding: 0px;
+    display: inline-block;
+    margin: 0px;
+    margin-top: -11px;
+    margin-right: 7px;
+}
+.tright{
+  text-align:right;
+  
+}
+
+.tl{
+	width: 20%;
+    display: inline-block;
+    padding: 2px 0px 0px 9px;
+}
+.tr{
+	width: 79%;
+    display: inline-block;
+    padding: 0px 12px 0px 0px;
+}
